@@ -1,0 +1,30 @@
+package amznLoginPg;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BrwsrFactory {
+	public BrwsrFactory(WebDriver driver){
+		this.driver=driver;
+	}
+	WebDriver driver;
+	public static WebDriver StartApplication(WebDriver driver){
+		System.setProperty("webdriver.chrome.driver", "C:\\selenium_drivers\\chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.get("https://www.amazon.in/");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		return driver;
+		
+	}
+	
+	public void CloseBrowser(WebDriver driver){
+		driver.quit();
+	}
+	public void CloseApplication(WebDriver driver){
+		driver.close();
+	}
+}
